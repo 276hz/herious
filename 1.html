@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F0F2F5">
+<title>Herious</title>
+<meta name="description" content="Herious – nhà phát triển web và sản phẩm số.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Herious">
+<meta property="og:description" content="Nhà phát triển web và sản phẩm số.">
+<meta property="og:image" content="image.png">
+<link rel="icon" href="image.png">
+<style>
+:root{--bg:#F0F2F5;--card:#fff;--ink:#050505;--muted:#65676B;--line:#CED0D4;--hover:#E4E6EB;--blue:#1877F2;--blue-d:#166FE5;--green:#31A24C;
+--font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.4 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.page{max-width:940px;margin:0 auto}
+
+.top{background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.2);border-radius:0 0 12px 12px;overflow:hidden}
+.cover{height:348px;background:url("back.png") center/cover no-repeat,linear-gradient(135deg,#1877F2 0%,#7B5CFF 55%,#E1306C 100%)}
+.head{display:flex;gap:20px;align-items:flex-end;padding:0 32px 20px}
+.avatar{flex:none;width:168px;height:168px;margin-top:-84px;border-radius:50%;border:4px solid var(--card);background:linear-gradient(135deg,#1877F2,#7B5CFF);color:#fff;display:grid;place-items:center;font-size:72px;font-weight:700;position:relative;overflow:hidden}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--card)}
+.who{flex:1;padding-bottom:6px;min-width:0}
+h1{display:flex;align-items:center;gap:8px;margin:0;font-size:32px;line-height:1.2;font-weight:700}
+.tick{width:22px;height:22px;flex:none}
+.handle{color:var(--muted);font-weight:500;margin-top:2px}
+.bio{margin:8px 0 0;max-width:34rem}
+.actions{display:flex;gap:8px;padding-bottom:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 16px;height:36px;border:0;border-radius:6px;background:var(--hover);color:var(--ink);font:600 15px var(--font);cursor:pointer;white-space:nowrap}
+.btn:hover{filter:brightness(.95)}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.primary:hover{background:var(--blue-d);filter:none}
+
+.cols{display:grid;grid-template-columns:340px 1fr;gap:16px;margin:16px 0 40px;align-items:start}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.2);padding:16px}
+.card+.card{margin-top:16px}
+h2{margin:0 0 12px;font-size:20px;font-weight:700}
+.row{display:flex;gap:12px;align-items:center;padding:7px 0}
+.row svg{flex:none;width:20px;height:20px;fill:#8A8D91}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{background:var(--hover);padding:5px 12px;border-radius:999px;font-weight:600;font-size:13px}
+
+/* Mạng xã hội */
+.links{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.link{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;transition:background .15s,transform .15s;min-width:0}
+.link:hover{background:var(--bg);transform:translateY(-1px)}
+.ico{flex:none;width:44px;height:44px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;overflow:hidden}
+.ico svg{display:block;width:100%;height:100%}
+.ico.full{background:none!important}
+.ico.own{background:#fff!important;border:1px solid var(--line)}
+.ico.own svg{width:26px;height:26px}
+.ico svg.glyph{width:26px;height:26px}
+.link div{min-width:0}
+.link b{display:block;font-weight:600}
+.link .s{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#242526;color:#fff;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:.25s;font-weight:500}
+.toast.show{opacity:1;transform:translateX(-50%)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 32px}
+
+@media (max-width:760px){
+  .cover{height:200px}
+  .head{flex-direction:column;align-items:center;text-align:center;padding:0 16px 16px;gap:10px}
+  .avatar{width:140px;height:140px;margin-top:-70px;font-size:60px}
+  h1{justify-content:center;font-size:28px}
+  .bio{margin-left:auto;margin-right:auto}
+  .chips{justify-content:center}
+  .actions{width:100%}.actions .btn{flex:1}
+  .cols{grid-template-columns:1fr;margin:12px 8px 32px}
+  .top{border-radius:0 0 8px 8px}
+}
+@media (max-width:420px){.links{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div class="cover" role="img" aria-label="Ảnh bìa"></div>
+    <div class="head">
+      <div class="avatar" aria-hidden="true">H<img src="image.png" alt="" width="168" height="168" decoding="async" onerror="this.remove()"></div>
+      <div class="who">
+        <h1>Herious
+          <svg class="tick" viewBox="0 0 24 24" role="img" aria-label="Đã xác minh"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path d="M7 12.5l3.2 3.2L17 8.9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </h1>
+        <div class="handle">@herious</div>
+        <!-- SỬA: bio -->
+        <p class="bio">Xây web và ứng dụng. Thích làm thứ gì đó chạy được và dùng được.</p>
+        <div class="chips"><span class="chip">Web</span><span class="chip">Android</span><span class="chip">AI</span></div>
+      </div>
+      <div class="actions">
+        <a class="btn primary" id="msg" href="mailto:you@example.com">Nhắn tin</a>
+        <button class="btn" id="share" type="button">Chia sẻ</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cols">
+    <aside>
+      <section class="card" aria-labelledby="intro">
+        <h2 id="intro">Giới thiệu</h2>
+        <!-- SỬA: thông tin của bạn -->
+        <div class="row"><svg viewBox="0 0 24 24"><path d="M20 6h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-10-2h4v2h-4V4z"/></svg><span>Nhà phát triển web và sản phẩm số</span></div>
+        <div class="row"><svg viewBox="0 0 24 24"><path d="M12 2L2 11h3v9h5v-6h4v6h5v-9h3L12 2z"/></svg><span>Sống tại Việt Nam</span></div>
+        <div class="row"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v5l4 2-1 1.7-5-2.7V7h2z"/></svg><span>Làm việc từ xa, tự do</span></div>
+      </section>
+    </aside>
+
+    <div>
+
+      <section class="card" aria-labelledby="lk">
+        <h2 id="lk">Mạng xã hội</h2>
+        <div class="links" id="links"></div>
+      </section>
+    </div>
+  </main>
+  <footer>© <span id="yr">2026</span> Herious</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  /* ================= CẤU HÌNH MẠNG XÃ HỘI =================
+     u: dán link hồ sơ của bạn. Để u:"" thì mạng đó sẽ được ẨN.
+     h: dòng chữ nhỏ hiển thị (tên tài khoản). Logo lấy từ Simple Icons (slug) */
+  var NETWORKS=[
+    {n:"Facebook",  s:"facebook",  c:"#1877F2", u:"https://facebook.com/",  h:"@herious"},
+    {n:"Instagram", s:"instagram", c:"linear-gradient(45deg,#F9CE34,#EE2A7B 50%,#6228D7)", u:"https://instagram.com/", h:"@herious"},
+    {n:"TikTok",    s:"tiktok",    c:"#000000", u:"https://tiktok.com/",    h:"@herious"},
+    {n:"YouTube",   s:"youtube",   c:"#FF0000", u:"https://youtube.com/",   h:"@herious"},
+    {n:"Discord",   s:"discord",   c:"#5865F2", u:"https://discord.com/",   h:"herious"},
+    {n:"GitHub",    s:"github",    c:"#181717", u:"https://github.com/",    h:"herious"},
+    {n:"X (Twitter)",s:"x",        c:"#000000", u:"", h:"@herious"},
+    {n:"Threads",   s:"threads",   c:"#000000", u:"", h:"@herious"},
+    {n:"Messenger", s:"messenger", c:"linear-gradient(45deg,#0099FF,#A033FF 60%,#FF5280)", u:"", h:"m.me/herious"},
+    {n:"Zalo",      s:"zalo",      c:"#0068FF", u:"", h:"Zalo"},
+    {n:"Telegram",  s:"telegram",  c:"#26A5E4", u:"", h:"@herious"},
+    {n:"WhatsApp",  s:"whatsapp",  c:"#25D366", u:"", h:"WhatsApp"},
+    {n:"Snapchat",  s:"snapchat",  c:"#FFFC00", g:"black", u:"", h:"herious"},
+    {n:"Pinterest", s:"pinterest", c:"#BD081C", u:"", h:"herious"},
+    {n:"Reddit",    s:"reddit",    c:"#FF4500", u:"", h:"u/herious"},
+    {n:"Twitch",    s:"twitch",    c:"#9146FF", u:"", h:"herious"},
+    {n:"Spotify",   s:"spotify",   c:"#1DB954", u:"", h:"Herious"},
+    {n:"SoundCloud",s:"soundcloud",c:"#FF5500", u:"", h:"herious"},
+    {n:"Steam",     s:"steam",     c:"#171A21", u:"", h:"herious"},
+    {n:"LinkedIn",  s:"linkedin",  c:"#0A66C2", u:"", h:"Herious"},
+    {n:"Behance",   s:"behance",   c:"#1769FF", u:"", h:"herious"},
+    {n:"Dribbble",  s:"dribbble",  c:"#EA4C89", u:"", h:"herious"},
+    {n:"Medium",    s:"medium",    c:"#000000", u:"", h:"@herious"},
+    {n:"Gmail",     s:"gmail",     c:"#EA4335", u:"mailto:you@example.com", h:"you@example.com",
+     /* logo Gmail nhúng sẵn, không cần mạng */
+     i:'<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M1.636 21.002h3.819V11.73L0 7.638v11.728c0 .904.732 1.636 1.636 1.636z"/><path fill="#34A853" d="M18.545 21.002h3.819c.904 0 1.636-.732 1.636-1.636V7.638l-5.455 4.092z"/><path fill="#FBBC04" d="M18.545 4.638v7.092L24 7.638V5.457c0-2.023-2.309-3.178-3.927-1.964z"/><path fill="#EA4335" d="M5.455 11.73V4.638L12 9.547l6.545-4.909v7.092L12 16.64z"/><path fill="#C5221F" d="M0 5.457v2.181l5.455 4.092V4.638L3.927 3.493C2.309 2.28 0 3.434 0 5.457z"/></svg>'}
+  ];
+  var EMAIL="you@example.com"; // SỬA: email nhận tin nhắn
+
+  /* Logo: dùng fetch() lấy file SVG rồi nhúng thẳng vào trang.
+     Thứ tự nguồn cho mỗi mạng:
+     1) icons/<tên>.svg  (file của bạn, nếu có)
+     2) SuperTinyIcons  – icon app đủ màu
+     3) Simple Icons    – logo hãng, tô trắng trên nền màu hãng
+     4) chữ cái đầu */
+  var SRC=[
+    {u:function(x){return "icons/"+x.s+".svg";}, full:true},
+    {u:function(x){return "https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons@master/images/svg/"+x.s+".svg";}, full:true},
+    {u:function(x){return "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/"+x.s+".svg";}, full:false}
+  ];
+
+  function cleanSvg(txt){
+    var d=new DOMParser().parseFromString(txt,"image/svg+xml");
+    var r=d.documentElement;
+    if(!r||r.nodeName.toLowerCase()!=="svg"||d.querySelector("parsererror"))return null;
+    r.querySelectorAll("script,foreignObject").forEach(function(n){n.remove();});
+    [r].concat([].slice.call(r.querySelectorAll("*"))).forEach(function(n){
+      [].slice.call(n.attributes).forEach(function(at){
+        if(/^on/i.test(at.name)||/^\s*javascript:/i.test(at.value))n.removeAttribute(at.name);
+      });
+    });
+    r.removeAttribute("width");r.removeAttribute("height");
+    r.setAttribute("aria-hidden","true");r.setAttribute("focusable","false");
+    return document.importNode(r,true);
+  }
+
+  function loadLogo(x,ico,i){
+    if(i>=SRC.length){ico.style.background=x.c;ico.textContent=x.n.charAt(0);return;}
+    fetch(SRC[i].u(x)).then(function(r){
+      if(!r.ok)throw 0; return r.text();
+    }).then(function(t){
+      var svg=cleanSvg(t); if(!svg)throw 0;
+      ico.textContent="";
+      if(SRC[i].full){ico.classList.add("full");}
+      else{ico.style.background=x.c;svg.setAttribute("fill",x.g||"#fff");svg.classList.add("glyph");}
+      ico.appendChild(svg);
+    }).catch(function(){loadLogo(x,ico,i+1);});
+  }
+
+  var box=document.getElementById("links");
+  NETWORKS.forEach(function(x){
+    if(!x.u) return;
+    var a=document.createElement("a");
+    a.className="link"; a.href=x.u;
+    if(x.u.indexOf("mailto:")!==0){a.target="_blank";a.rel="noopener noreferrer";}
+    var ico=document.createElement("span");
+    ico.className="ico"; ico.style.background="var(--hover)";
+    var t=document.createElement("div");
+    t.innerHTML="<b></b><span class='s'></span>";
+    t.firstChild.textContent=x.n;
+    t.lastChild.textContent=x.h||"";
+    a.appendChild(ico);a.appendChild(t);box.appendChild(a);
+    if(x.i){ico.classList.add("own");ico.innerHTML=x.i;}else{loadLogo(x,ico,0);}
+  });
+
+  var msg=document.getElementById("msg");
+  msg.href="mailto:"+EMAIL;
+
+  var toast=document.getElementById("toast"),timer;
+  function say(t){toast.textContent=t;toast.classList.add("show");clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove("show")},2200)}
+  document.getElementById("share").addEventListener("click",function(){
+    var url=location.href;
+    if(navigator.share){navigator.share({title:"Herious",url:url}).catch(function(){});return}
+    if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){say("Đã sao chép liên kết")},function(){say("Không sao chép được")})}
+    else say("Hãy sao chép liên kết trên thanh địa chỉ");
+  });
+  document.getElementById("yr").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
